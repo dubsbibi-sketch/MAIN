@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>mine</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            background-color: #111;
+            color: #eee;
+            padding-top: 40px;
+        }
+        #screen {
+            width: 320px;
+            height: 540px;
+            margin: auto;
+            background-color: #000;
+            border: 3px solid #ff0000;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px red;
+        }
+        #overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: black;
+            color: red;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            animation: glitch 1s infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px red; }
+            50% { text-shadow: -2px -2px lime; }
+            100% { text-shadow: 2px -2px blue; }
+        }
+        button, input {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #222;
+            color: white;
+            border: 1px solid #555;
+            cursor: pointer;
+        }
+        #passcodeInput {
+            width: 120px;
+            text-align: center;
+        }
+        #message {
+            margin-top: 10px;
+            font-size: 18px;
+            color: lime;
+        }
+    </style>
+</head>
+<body>
+
+<h2>⚠️ Simulated Phone Lock Virus</h2>
+<div id="screen">
+    <div id="overlay">
+        <div>🔒 Your phone has been locked</div>
+        <div>Enter passcode to unlock</div>
+        <input type="password" id="passcodeInput" placeholder="Enter code">
+        <button onclick="checkPasscode()">Unlock</button>
+        <div id="message"></div>
+    </div>
+</div>
+
+<script>
+    const correctCode = "2120"; // Change this to any passcode you want
+
+    window.onload = function() {
+        document.getElementById('overlay').style.display = 'flex';
+        document.getElementById('message').textContent = "";
+        document.getElementById('passcodeInput').value = "";
+    };
+
+    function checkPasscode() {
+        const input = document.getElementById('passcodeInput').value;
+        if (input === correctCode) {
+            document.getElementById('overlay').style.display = 'none';
+        } else {
+            document.getElementById('message').textContent = "❌ Incorrect passcode";
+        }
+    }
+</script>
+
+</body>
+</html>
